@@ -46,7 +46,7 @@ public class RaycastController : MonoBehaviour
 
             if (prevRenderer != null)
             {
-                prevRenderer.material.color = prevColor;
+                setColor(prevRenderer, prevColor);
                 prevRenderer = null;
             }
         }
@@ -62,7 +62,7 @@ public class RaycastController : MonoBehaviour
                 (hitRenderer != prevRenderer && prevRenderer != null))
             {
                 Debug.Log("Hit renderer= " + hitRenderer.ToString());
-                prevRenderer.material.color = prevColor;
+                setColor(prevRenderer, prevColor);
             }
 
             // 如果命中了新物体，保存新物体的颜色用于后续恢复，并改变新物体的颜色
@@ -76,5 +76,14 @@ public class RaycastController : MonoBehaviour
                 hitRenderer.material.color = hitColor;
             }
         }
+    }
+
+    private void setColor(Renderer renderer, Color color)
+    {
+        if (renderer == null || renderer.material == null)
+        {
+            return;
+        }
+        renderer.material.color = color;
     }
 }
