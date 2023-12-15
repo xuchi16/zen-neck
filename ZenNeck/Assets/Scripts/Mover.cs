@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Mover : MonoBehaviour
 {
+    public ZenStageManager stageManager;
 
-    public float radius = 2.0f; // 球面半径
+    private float radius = 2.0f; // 球面半径
     private float angularSpeed = 5.0f; // 角速度（度/秒）
 
     private float angle = 90.0f; // 初始方位角（经度）
@@ -17,6 +19,15 @@ public class Mover : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        if (stageManager.isMoveStage()) {
+            Move();
+        }
+    }
+
+
+    // ========================= Move stage=========================
+    private void Move()
     {
         // 计算角度的增量，确保匀速旋转
         float deltaAngle = angularSpeed * Time.deltaTime;
@@ -47,7 +58,6 @@ public class Mover : MonoBehaviour
 
         // 设置目标对象的位置
         transform.position = targetPosition;
-
     }
 
     Vector3 CalculatePosition(float lon)

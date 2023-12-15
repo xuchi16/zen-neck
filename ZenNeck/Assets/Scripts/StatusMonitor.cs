@@ -7,6 +7,7 @@ using System.Text;
 public class StatusMonitor : MonoBehaviour
 {
     public TimeManager timeManager;
+    public ZenStageManager stageManager;
     public TextMeshProUGUI statusBoard;
 
     private const string TITLE = "STATUS";
@@ -28,6 +29,10 @@ public class StatusMonitor : MonoBehaviour
 
         // Hit data
         AddMsg(sb, $"Hit: {timeManager.isHit()}");
+        Separate(sb);
+
+        // Stage data
+        AddMsg(sb, stageManager.CurrentStageName());
         Separate(sb);
 
         statusBoard.text = sb.ToString();
