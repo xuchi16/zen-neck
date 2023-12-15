@@ -40,6 +40,11 @@ public class TimeManager : MonoBehaviour
         hit = false;
     }
 
+    public bool isHit()
+    {
+        return hit;
+    }
+
     private void updateTextBoard()
     {
         totalTimeText.text = $"Total Time: {nomralizeTime(totalTime)}s";
