@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da8dc11e3f714dc99319080f57fb382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageManager: {fileID: 1166384628}
+  stageManager: {fileID: 1166384630}
   totalTimeText: {fileID: 2117793257}
   hitTimeText: {fileID: 1284037167}
 --- !u!4 &437411130
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeManager: {fileID: 437411129}
-  stageManager: {fileID: 1166384628}
+  stageManager: {fileID: 1166384630}
   statusBoard: {fileID: 2011756768}
 --- !u!1 &469377436 stripped
 GameObject:
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d0560302d2d48af84f268d552a08e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageManager: {fileID: 1166384628}
+  stageManager: {fileID: 1166384630}
   countdownText: {fileID: 1357612258}
 --- !u!1 &1056737891
 GameObject:
@@ -1252,7 +1252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1056737892
 Transform:
   m_ObjectHideFlags: 0
@@ -1512,7 +1512,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166384629}
-  - component: {fileID: 1166384628}
   - component: {fileID: 1166384630}
   m_Layer: 0
   m_Name: Managers
@@ -1521,18 +1520,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1166384628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166384627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6438f79caf04c445eacd53afcc6b9caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1166384629
 Transform:
   m_ObjectHideFlags: 0
@@ -1557,12 +1544,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1166384627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da8dc11e3f714dc99319080f57fb382, type: 3}
+  m_Script: {fileID: 11500000, guid: 6438f79caf04c445eacd53afcc6b9caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageManager: {fileID: 0}
-  totalTimeText: {fileID: 0}
-  hitTimeText: {fileID: 0}
 --- !u!1 &1284037165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,7 +2029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: afb0849c380cf416daafc4d0b669ad0b, type: 2}
   m_sharedMaterial: {fileID: -1127521652255771741, guid: afb0849c380cf416daafc4d0b669ad0b, type: 2}
@@ -2435,7 +2419,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773164717}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2660,7 +2644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ff7f31235434efa939e751ef611dca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageManager: {fileID: 1166384628}
+  stageManager: {fileID: 1166384630}
 --- !u!1 &2000444246
 GameObject:
   m_ObjectHideFlags: 0
