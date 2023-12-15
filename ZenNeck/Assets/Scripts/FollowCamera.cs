@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
     public Transform cameraRig;
-    private float distance = 0.5f;
+    private float distance = 3f;
 
     // Start is called before the first frame update
     void Start()

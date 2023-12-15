@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Text;
 
 public class Countdown : MonoBehaviour
 {
     public ZenStageManager stageManager; // 用于控制阶段
     public TextMeshProUGUI countdownText; // 用于显示倒计时的UI文本
 
+    private string HINT_MSG = "Please focus on the ZenBall";
     private float countdownDuration = 3.0f; // 倒计时持续时间（秒）
     private float currentTime;
 
@@ -30,8 +32,6 @@ public class Countdown : MonoBehaviour
         }
 
         // 倒计时结束后执行你的操作
-        Debug.Log("Countdown ends!");
-
         if (countdownText != null)
         {
             countdownText.gameObject.SetActive(false);
@@ -45,7 +45,11 @@ public class Countdown : MonoBehaviour
     {
         if (countdownText != null)
         {
-            countdownText.text = currentTime.ToString();
+            StringBuilder msgBuilder = new StringBuilder();
+            msgBuilder.Append(HINT_MSG);
+            msgBuilder.Append("\n");
+            msgBuilder.Append(currentTime.ToString());
+            countdownText.text = msgBuilder.ToString();
         }
     }
 
