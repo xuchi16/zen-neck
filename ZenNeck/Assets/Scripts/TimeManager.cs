@@ -15,6 +15,8 @@ public class TimeManager : MonoBehaviour
     private float hitTime = 0f;
     private bool hit;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,11 @@ public class TimeManager : MonoBehaviour
     public bool isHit()
     {
         return hit;
+    }
+
+    public bool isLost()
+    {
+        return !hit;
     }
 
     private void updateTextBoard()

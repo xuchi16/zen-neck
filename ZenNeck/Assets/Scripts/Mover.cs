@@ -21,13 +21,13 @@ public class Mover : MonoBehaviour
     void Update()
     {
         if (stageManager.isMoveStage()) {
-            Move();
+            Move1();
         }
     }
 
 
     // ========================= Move stage=========================
-    private void Move()
+    private void Move1()
     {
         // 计算角度的增量，确保匀速旋转
         float deltaAngle = angularSpeed * Time.deltaTime;
@@ -58,6 +58,11 @@ public class Mover : MonoBehaviour
 
         // 设置目标对象的位置
         transform.position = targetPosition;
+    }
+
+    private void Move2()
+    {
+
     }
 
     Vector3 CalculatePosition(float lon)

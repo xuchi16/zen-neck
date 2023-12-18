@@ -34,7 +34,8 @@ public class Countdown : MonoBehaviour
         // 倒计时结束后执行你的操作
         if (countdownText != null)
         {
-            countdownText.gameObject.SetActive(false);
+            //countdownText.gameObject.SetActive(false);
+            ClearMsgBoard();
         }
 
         stageManager.NextStage();
@@ -50,6 +51,14 @@ public class Countdown : MonoBehaviour
             msgBuilder.Append("\n");
             msgBuilder.Append(currentTime.ToString());
             countdownText.text = msgBuilder.ToString();
+        }
+    }
+
+    private void ClearMsgBoard()
+    {
+        if (countdownText != null)
+        {
+            countdownText.text = "";
         }
     }
 
