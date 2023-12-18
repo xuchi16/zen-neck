@@ -8,26 +8,42 @@ public class Mover : MonoBehaviour
     public ZenStageManager stageManager;
 
     private float radius = 2.0f; // 球面半径
-    private float angularSpeed = 5.0f; // 角速度（度/秒）
+    private float angularSpeed = 90.0f; // 角速度（度/秒）
 
-    private float angle = 90.0f; // 初始方位角（经度）
+    private float angle; // 初始方位角（经度）
+    public float accAngle; // 累计方位角
+    public bool level1Ends;
+
+    private int round = 1; // 来回的轮数
 
     // Start is called before the first frame update
     void Start()
     {
+        InitStage();
+    }
+
+    public void InitStage()
+    {
+        angle = 90.0f;
+        accAngle = 0.0f;
+        level1Ends = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stageManager.isMoveStage()) {
-            Move1();
+        if (!stageManager.isMoveStage()) {
+            return;
+        }
+
+        if (!level1Ends) {
+            level1Ends = Level1(level1Ends);
         }
     }
 
 
     // ========================= Move stage=========================
-    private void Move1()
+    private bool Level1(bool ends)
     {
         // 计算角度的增量，确保匀速旋转
         float deltaAngle = angularSpeed * Time.deltaTime;
@@ -35,13 +51,19 @@ public class Mover : MonoBehaviour
 
         // 更新方位角
         angle += deltaAngle;
+        accAngle += Mathf.Abs(deltaAngle);
 
         if (angle >= 180 || angle <= 0)
         {
             angularSpeed = -angularSpeed;
         }
 
-        Debug.Log("Angle: " + angle);
+        if (accAngle > 360 * round)
+        {
+            ends = true;
+            stageManager.NextStage();
+        }
+
 
         float longitude;
         longitude = angle * Mathf.Deg2Rad; // 将角速度转换为弧度
@@ -58,6 +80,7 @@ public class Mover : MonoBehaviour
 
         // 设置目标对象的位置
         transform.position = targetPosition;
+        return ends;
     }
 
     private void Move2()
