@@ -64,7 +64,6 @@ public class Mover : MonoBehaviour
         {
             ends = true;
             stageManager.NextStage();
-            countdownManager.StartNextRoundCountdown();
         }
 
 

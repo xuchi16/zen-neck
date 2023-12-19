@@ -490,6 +490,7 @@ MonoBehaviour:
   timeManager: {fileID: 437411129}
   stageManager: {fileID: 1166384630}
   statusBoard: {fileID: 2011756768}
+  mover: {fileID: 1857888187}
 --- !u!114 &437411132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1166384629}
   - component: {fileID: 1166384630}
+  - component: {fileID: 1166384631}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1133,6 +1135,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6438f79caf04c445eacd53afcc6b9caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1166384631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166384627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911959d3646db4ee783757bef00a4012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownManager: {fileID: 437411132}
+  stageManager: {fileID: 1166384630}
+  zenBall: {fileID: 1857888185}
+  levels: []
 --- !u!1 &1284037165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,6 +1986,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 0}
+  countdownManager: {fileID: 0}
+  accAngle: 0
+  level1Ends: 0
 --- !u!135 &1773164719
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2290,6 +2311,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 1166384630}
+  countdownManager: {fileID: 437411132}
+  accAngle: 0
+  level1Ends: 0
 --- !u!1 &2011756766
 GameObject:
   m_ObjectHideFlags: 0
