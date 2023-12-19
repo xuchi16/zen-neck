@@ -9,7 +9,9 @@ public class LevelManager : MonoBehaviour
     public ZenStageManager stageManager;
     public GameObject zenBall;
 
-    private List<Level> levels = new List<Level>();
+    public List<Level> levels = new List<Level>();
+
+    public bool allCompleted = false;
     private int currentLevelIndex = 0;
 
     // Start is called before the first frame update
@@ -18,24 +20,35 @@ public class LevelManager : MonoBehaviour
         // 初始化关卡
         setUpLevels();
 
-        // 在这里启动第一关
-        StartLevel(currentLevelIndex);
+        // 开始关卡
+        levels[0].Start();
     }
 
     public void setUpLevels()
     {
-        Level level1 = new Level1();
+        Level level1 = new Level1(this, countdownManager);
         level1.AddMovingObject(zenBall.transform);
         levels.Add(level1);
+
+        Level level2 = new Level2(this, countdownManager);
+        level2.AddMovingObject(zenBall.transform);
+        levels.Add(level2);
+
+        Level level3 = new Level3(this, countdownManager);
+        level3.AddMovingObject(zenBall.transform);
+        levels.Add(level3);
     }
 
     void Update()
     {
         foreach (Level level in levels)
         {
-            level.Move();
+            if (level.moving)
+            {
+                level.Move();
+            }
         }
-        
+
     }
 
     public void StartLevel(int levelIndex)
@@ -55,13 +68,31 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    //private void Move(Transform transform)
-    //{
-    //    // 检查是否有 transform 引用
-    //    if (transform != null)
-    //    {
-    //        // 在这里实现 transform 的移动逻辑，例如平移
-    //        transform.Translate(Vector3.forward * Time.deltaTime);
-    //    }
-    //}
+    public void NextLevel(Level completedLevel)
+    {
+        bool flag = false;
+        Level nextLevel = null;
+        foreach (Level level in levels)
+        {
+            if (level == completedLevel)
+            {
+                flag = true;
+                continue;
+            }
+            if (flag)
+            {
+                nextLevel = level;
+                break;
+            }
+        }
+        if (nextLevel != null)
+        {
+            nextLevel.Start();
+        }
+        else
+        {
+            allCompleted = true;
+        }
+    }
+
 }

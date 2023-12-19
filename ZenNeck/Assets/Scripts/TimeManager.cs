@@ -26,10 +26,10 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!stageManager.isMoveStage())
-        {
-            return;
-        }
+        //if (!stageManager.isMoveStage())
+        //{
+        //    return;
+        //}
         totalTime += Time.deltaTime;
         if (hit)
         {
