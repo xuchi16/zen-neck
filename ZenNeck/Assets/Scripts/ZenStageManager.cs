@@ -53,27 +53,4 @@ public class ZenStageManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        switch (currentStage)
-        {
-            case Stage.Hint:
-                Debug.Log("HINTS");
-                break;
-            case Stage.Countdown:
-                Debug.Log("CountDown");
-                break;
-            case Stage.Move:
-                Debug.Log("Move");
-                break;
-            case Stage.Finish:
-                Debug.Log("Finished");
-                break;
-            default:
-                Debug.Log("Unexpected!");
-                break;
-        }
-    }
-
-
 }

@@ -11,23 +11,33 @@ public class Countdown : MonoBehaviour
 
     private string HINT_MSG = "Please focus on the ZenBall";
     private float countdownDuration = 3.0f; // 倒计时持续时间（秒）
-    private float currentTime;
+    private float remainingTime;
+    private int currentRound = 0;
+
+    public delegate void StartCountDownDelegate();
+    public event StartCountDownDelegate OnStartCountdown;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = countdownDuration;
-        UpdateUI();
-        StartCoroutine(StartCountdown());
+        OnStartCountdown += StartNextRoundCountdown;
+        StartNextRoundCountdown();
+    }
 
+    public void StartNextRoundCountdown()
+    {
+        currentRound++;
+        StartCoroutine(StartCountdown());
     }
 
     IEnumerator StartCountdown()
     {
-        while (currentTime > 0)
+        Debug.Log("Round: " + currentRound);
+        remainingTime = countdownDuration;
+        while (remainingTime > 0)
         {
             yield return new WaitForSeconds(1.0f);
-            currentTime--;
+            remainingTime--;
             UpdateUI();
         }
 
@@ -42,6 +52,14 @@ public class Countdown : MonoBehaviour
 
     }
 
+    public void TriggerStartCountDownEvent()
+    {
+        if (OnStartCountdown != null)
+        {
+            OnStartCountdown();
+        }
+    }
+
     void UpdateUI()
     {
         if (countdownText != null)
@@ -49,7 +67,7 @@ public class Countdown : MonoBehaviour
             StringBuilder msgBuilder = new StringBuilder();
             msgBuilder.Append(HINT_MSG);
             msgBuilder.Append("\n");
-            msgBuilder.Append(currentTime.ToString());
+            msgBuilder.Append(remainingTime.ToString());
             countdownText.text = msgBuilder.ToString();
         }
     }
@@ -63,8 +81,8 @@ public class Countdown : MonoBehaviour
     }
 
     // 获取当前剩余时间
-    public float GetCurrentTime()
+    public float GetremainingTime()
     {
-        return currentTime;
+        return remainingTime;
     }
 }

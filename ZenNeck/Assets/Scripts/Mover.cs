@@ -6,6 +6,7 @@ using TMPro;
 public class Mover : MonoBehaviour
 {
     public ZenStageManager stageManager;
+    public Countdown countdownManager;
 
     private float radius = 2.0f; // 球面半径
     private float angularSpeed = 90.0f; // 角速度（度/秒）
@@ -39,6 +40,7 @@ public class Mover : MonoBehaviour
         if (!level1Ends) {
             level1Ends = Level1(level1Ends);
         }
+
     }
 
 
@@ -62,6 +64,7 @@ public class Mover : MonoBehaviour
         {
             ends = true;
             stageManager.NextStage();
+            countdownManager.StartNextRoundCountdown();
         }
 
 
