@@ -7,10 +7,8 @@ using System.Text;
 public class StatusMonitor : MonoBehaviour
 {
     public TimeManager timeManager;
-    public ZenStageManager stageManager;
     public TextMeshProUGUI statusBoard;
     public LevelManager levelManager;
-    public Mover mover;
 
     private const string TITLE = "STATUS";
     private const string SEPARATOR = "-------------------------";
@@ -31,14 +29,6 @@ public class StatusMonitor : MonoBehaviour
 
         // Hit data
         AddMsg(sb, $"Hit: {timeManager.isHit()}");
-        Separate(sb);
-
-        // Stage data
-        AddMsg(sb, stageManager.CurrentStageName());
-        Separate(sb);
-
-        // Mover data
-        AddMsg(sb, mover.accAngle.ToString());
         Separate(sb);
 
         // Level data
