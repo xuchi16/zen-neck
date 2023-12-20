@@ -24,7 +24,7 @@ public class TableController : MonoBehaviour
     private void CreateTable()
     {
 
-        string tableContent = "| No |               Time            | Percentage |\n"; // 创建表格标题行
+        string tableContent = "| No\t| Time\t\t\t\t| Percentage |\n"; // 创建表格标题行
 
         MainManager.Records records = MainManager.Instance.records;
 
@@ -32,7 +32,7 @@ public class TableController : MonoBehaviour
         foreach (MainManager.Record record in records.records)
         {
             idx++;
-            tableContent += $"|  {idx}  | {record.dateTime} |     {record.percentage.ToString("0.00")}%     |\n"; // 添加数据行
+            tableContent += $"| {idx}\t| {record.dateTime}\t| {record.percentage.ToString("0.00")}%\t|\n"; // 添加数据行
         }
 
         tableText.text = tableContent; // 设置TextMeshPro Text的文本内容
