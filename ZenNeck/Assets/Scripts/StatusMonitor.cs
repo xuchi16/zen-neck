@@ -47,6 +47,7 @@ public class StatusMonitor : MonoBehaviour
         {
             AddMsg(sb, level.ToString());
         }
+        AddMsg(sb, levelManager.allCompleted.ToString());
         Separate(sb);
 
         statusBoard.text = sb.ToString();

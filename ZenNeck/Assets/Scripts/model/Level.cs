@@ -266,6 +266,7 @@ public class Level3 : Level
     private float yRadius = 0.8f; // 8 字形轨迹的 y 轴半径
     private float zPosition = 2.0f;
     private float angle; // 初始方位角（经度）
+    private float accAngle;
 
     public Level3(LevelManager levelManager, Countdown countdownManager) : base(levelManager, countdownManager)
     {
@@ -274,6 +275,7 @@ public class Level3 : Level
         startMessage = "Follow the figure-eight path";
         endingMessage = "";
         angle = 0.0f;
+        accAngle = 0.0f;
     }
 
     public override void SpecificMove()
@@ -292,10 +294,14 @@ public class Level3 : Level
             // 更新方位角
             angle += deltaAngle;
 
-            if (angle >= 360 * round)
+            accAngle += Mathf.Abs(deltaAngle);
+            if (accAngle > 360 * round)
             {
-                round++;
+                Complete();
             }
+
+
+
 
             // 计算目标对象在 8 字形轨迹上的新位置
             Vector3 targetPosition = Normalize(CalculateFigureEightPosition(angle));
@@ -316,3 +322,20 @@ public class Level3 : Level
     }
 }
 
+public class SummaryLevel : Level
+{
+
+    public SummaryLevel(LevelManager levelManager, Countdown countdownManager) : base(levelManager, countdownManager)
+    {
+        levelName = "Well done";
+        duration = 5;
+        startMessage = "All tasks completed! Will Return to Menu Soon.";
+        endingMessage = "";
+    }
+
+    public override void SpecificMove()
+    {
+        this.levelManager.ReturnToMenu();
+    }
+
+}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -30,13 +31,16 @@ public class LevelManager : MonoBehaviour
         level1.AddMovingObject(zenBall.transform);
         levels.Add(level1);
 
-        Level level2 = new Level2(this, countdownManager);
-        level2.AddMovingObject(zenBall.transform);
-        levels.Add(level2);
+        //Level level2 = new Level2(this, countdownManager);
+        //level2.AddMovingObject(zenBall.transform);
+        //levels.Add(level2);
 
-        Level level3 = new Level3(this, countdownManager);
-        level3.AddMovingObject(zenBall.transform);
-        levels.Add(level3);
+        //Level level3 = new Level3(this, countdownManager);
+        //level3.AddMovingObject(zenBall.transform);
+        //levels.Add(level3);
+
+        Level summaryLevel = new SummaryLevel(this, countdownManager);
+        levels.Add(summaryLevel);
     }
 
     void Update()
@@ -93,6 +97,16 @@ public class LevelManager : MonoBehaviour
         {
             allCompleted = true;
         }
+    }
+
+    public void Summary()
+    {
+
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
 }

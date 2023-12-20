@@ -30,7 +30,7 @@ public class Countdown : MonoBehaviour
         int duration = level.duration;
         string message =
             level.startMessage == null || level.startMessage.Length == 0 ?
-            level.levelName : $"{level.levelName}: {level.startMessage}";
+            level.levelName : $"{level.levelName}. {level.startMessage}";
 
         remainingTime = duration > 0 ? duration : defaultCountdownDuration;
         Debug.Log($"Round: {currentRound}, duration: {remainingTime}, msg: {message}");
