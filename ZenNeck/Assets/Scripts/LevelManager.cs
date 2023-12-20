@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     // References
     public Countdown countdownManager;
     public ZenStageManager stageManager;
+    public TimeManager timeManager;
     public GameObject zenBall;
 
     public List<Level> levels = new List<Level>();
@@ -28,19 +29,23 @@ public class LevelManager : MonoBehaviour
 
     public void setUpLevels()
     {
-        Level level1 = new Level1(this, countdownManager);
+        Level level0 = new Level0(this, countdownManager, timeManager);
+        level0.AddMovingObject(zenBall.transform);
+        levels.Add(level0);
+
+        Level level1 = new Level1(this, countdownManager, timeManager);
         level1.AddMovingObject(zenBall.transform);
         levels.Add(level1);
 
-        //Level level2 = new Level2(this, countdownManager);
-        //level2.AddMovingObject(zenBall.transform);
-        //levels.Add(level2);
+        Level level2 = new Level2(this, countdownManager, timeManager);
+        level2.AddMovingObject(zenBall.transform);
+        levels.Add(level2);
 
-        //Level level3 = new Level3(this, countdownManager);
-        //level3.AddMovingObject(zenBall.transform);
-        //levels.Add(level3);
+        Level level3 = new Level3(this, countdownManager, timeManager);
+        level3.AddMovingObject(zenBall.transform);
+        levels.Add(level3);
 
-        Level summaryLevel = new SummaryLevel(this, countdownManager);
+        Level summaryLevel = new SummaryLevel(this, countdownManager, timeManager);
         levels.Add(summaryLevel);
     }
 
@@ -92,6 +97,7 @@ public class LevelManager : MonoBehaviour
         }
         if (nextLevel != null)
         {
+            currentLevel = nextLevel;
             nextLevel.Start();
         }
         else

@@ -39,6 +39,11 @@ public class TimeManager : MonoBehaviour
         updateTextBoard();
     }
 
+    public float HitPercentage()
+    {
+        return hitTime / totalTime * 100;
+    }
+
     public void Hit()
     {
         hit = true;
@@ -61,8 +66,8 @@ public class TimeManager : MonoBehaviour
 
     private void updateTextBoard()
     {
-        totalTimeText.text = $"Total Time: {nomralizeTime(totalTime)}s";
-        hitTimeText.text = $"Hit Time: {nomralizeTime(hitTime)}s";
+        totalTimeText.text = $"Total   Time: {nomralizeTime(totalTime)}s";
+        hitTimeText.text   = $"Focus Time: {nomralizeTime(hitTime)}s";
     }
 
     private string nomralizeTime(float seconds)

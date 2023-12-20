@@ -28,9 +28,7 @@ public class Countdown : MonoBehaviour
     IEnumerator StartCountdown(Level level)
     {
         int duration = level.duration;
-        string message =
-            level.startMessage == null || level.startMessage.Length == 0 ?
-            level.levelName : $"{level.levelName}. {level.startMessage}";
+        string message = level.GetMessage();
 
         remainingTime = duration > 0 ? duration : defaultCountdownDuration;
         Debug.Log($"Round: {currentRound}, duration: {remainingTime}, msg: {message}");

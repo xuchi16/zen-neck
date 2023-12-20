@@ -8,28 +8,31 @@ public abstract class Level
     public string levelName; // 关卡名称
     public int duration; // 每一关开始前的倒计时时间
     public List<Transform> movingObjects; // 关卡中需要运动的物体
+    
     public string startMessage; // 开始时的消息
     public string endingMessage; // 结束时的消息
 
     public LevelManager levelManager;
     public Countdown countdownManager;
+    public TimeManager timeManager;
 
     public bool start = false;
     public bool moving = false;
     public bool completed = false;
 
-    protected int round = 1; // 来回的轮数
-    protected float angularSpeed = 90.0f; // 角速度（度/秒）
+    protected int round = 2; // 来回的轮数
+    protected float angularSpeed = 10.0f; // 角速度（度/秒）
     protected float sphereRadius = 2.0f; // 球面半径
 
     public float angleLowerBound = 20;
     public float angleUpperBound = 160;
 
     // 构造函数
-    public Level(LevelManager levelManager, Countdown countdownManager) {
+    public Level(LevelManager levelManager, Countdown countdownManager, TimeManager timeManager) {
         movingObjects = new List<Transform>();
         this.levelManager = levelManager;
         this.countdownManager = countdownManager;
+        this.timeManager = timeManager;
     }
 
     public void AddMovingObject(Transform transform)
@@ -98,6 +101,12 @@ public abstract class Level
         return origin * factor;
     }
 
+    public virtual string GetMessage()
+    {
+        return startMessage == null || startMessage.Length == 0 ?
+            levelName : $"{levelName}. {startMessage}";
+    }
+
     // 抽象的 Move 方法，子类需要实现自己的移动逻辑
     public abstract void SpecificMove();
 
@@ -107,12 +116,67 @@ public abstract class Level
     }
 }
 
+public class Level0 : Level
+{
+    private float angle; // 初始方位角（经度）
+    public float accAngle; // 累计方位角
+    private float minScale = 1.0f; // 最小缩放值
+    private float maxScale = 1.2f; // 最大缩放值
+    private float scaleSpeed = 0.7f; // 缩放速度
+    private int totalScaleRounds = 28; // 总共的缩放轮数
+
+    public Level0(LevelManager levelManager, Countdown countdownManager, TimeManager timeManager) : base(levelManager, countdownManager, timeManager)
+    {
+        levelName = "Breath";
+        duration = 3;
+        startMessage = "Please inhale when schrinking and exhale when expanding";
+        endingMessage = "";
+
+        angle = 90.0f;
+        accAngle = 0.0f;
+    }
+
+    public override void SpecificMove()
+    {
+        foreach (Transform transform in movingObjects)
+        {
+            // 检查是否有 transform 引用
+            if (transform == null)
+            {
+                return;
+            }
+
+            float delta = Time.time - duration;
+
+            // 计算当前缩放轮数
+            int currentScaleRound = Mathf.FloorToInt(delta * scaleSpeed);
+
+            //如果达到总共的缩放轮数，停止缩放
+            if (currentScaleRound > totalScaleRounds)
+            {
+                Complete(); // 停止移动
+                return;
+            }
+
+            // 计算大小变化的比例
+            float scaleChange = minScale + Mathf.Sin(delta * scaleSpeed) * 0.2f; // 在 minScale 到 maxScale 之间变化
+            Debug.Log($"currentScaleRound: {currentScaleRound}, scale: {scaleChange}");
+
+            // 设置物体的局部缩放
+            Vector3 newScale = Vector3.one * scaleChange;
+            transform.localScale = newScale;
+
+        }
+    }
+
+}
+
 public class Level1 : Level
 {
     private float angle; // 初始方位角（经度）
     public float accAngle; // 累计方位角
 
-    public Level1(LevelManager levelManager, Countdown countdownManager) : base(levelManager, countdownManager)
+    public Level1(LevelManager levelManager, Countdown countdownManager, TimeManager timeManager) : base(levelManager, countdownManager, timeManager)
     {
         levelName = "Level 1";
         duration = 3;
@@ -188,7 +252,7 @@ public class Level2 : Level
     private float angle; // 初始方位角（经度）
     public float accAngle; // 累计方位角
 
-    public Level2(LevelManager levelManager, Countdown countdownManager) : base(levelManager, countdownManager)
+    public Level2(LevelManager levelManager, Countdown countdownManager, TimeManager timeManager) : base(levelManager, countdownManager, timeManager)
     {
         levelName = "Level 2";
         duration = 3;
@@ -268,7 +332,7 @@ public class Level3 : Level
     private float angle; // 初始方位角（经度）
     private float accAngle;
 
-    public Level3(LevelManager levelManager, Countdown countdownManager) : base(levelManager, countdownManager)
+    public Level3(LevelManager levelManager, Countdown countdownManager, TimeManager timeManager) : base(levelManager, countdownManager, timeManager)
     {
         levelName = "Level 3";
         duration = 5;
@@ -325,10 +389,10 @@ public class Level3 : Level
 public class SummaryLevel : Level
 {
 
-    public SummaryLevel(LevelManager levelManager, Countdown countdownManager) : base(levelManager, countdownManager)
+    public SummaryLevel(LevelManager levelManager, Countdown countdownManager, TimeManager timeManager) : base(levelManager, countdownManager, timeManager)
     {
         levelName = "Well done";
-        duration = 5;
+        duration = 10;
         startMessage = "All tasks completed! Will Return to Menu Soon.";
         endingMessage = "";
     }
@@ -336,6 +400,24 @@ public class SummaryLevel : Level
     public override void SpecificMove()
     {
         this.levelManager.ReturnToMenu();
+    }
+
+    public override string GetMessage()
+    {
+        float percentage = 0;
+        if (timeManager != null)
+        {
+            percentage = timeManager.HitPercentage();
+        }
+
+        Debug.Log("Percentage: " + percentage);
+        if (percentage > 0)
+        {
+            return $"Well done! You maintained focus for {percentage.ToString("F1")}% of the process. \nReturning to the menu shortly.";
+        } else
+        {
+            return $"Well done! You've completed all tasks. \nReturning to the menu shortly.";
+        }
     }
 
 }
