@@ -24,8 +24,8 @@ public abstract class Level
     public bool convertToRelative = true;
 
     protected int round = 2; // 来回的轮数
-    //protected float angularSpeed = 15.0f; // 角速度（度/秒）
-    protected float angularSpeed = 90.0f; // 角速度（度/秒）- 测试加速
+    protected float angularSpeed = 15.0f; // 角速度（度/秒）
+    //protected float angularSpeed = 90.0f; // 角速度（度/秒）- 测试加速
     protected float sphereRadius = 2.0f; // 球面半径
 
     public float angleLowerBound = 20;
