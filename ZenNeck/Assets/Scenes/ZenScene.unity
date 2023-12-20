@@ -458,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 1166384630}
+  levenManager: {fileID: 0}
   totalTimeText: {fileID: 2117793257}
   hitTimeText: {fileID: 1284037167}
 --- !u!4 &437411130
@@ -520,6 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   msgText: {fileID: 1633169473}
   stageManager: {fileID: 1166384630}
+  levelManager: {fileID: 1166384631}
   timeManager: {fileID: 437411129}
 --- !u!1 &670623028
 GameObject:
@@ -1737,7 +1739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 51.4, y: -30.7}
+  m_AnchoredPosition: {x: 50, y: -30.7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633169473

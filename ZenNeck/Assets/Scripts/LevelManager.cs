@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public GameObject zenBall;
 
     public List<Level> levels = new List<Level>();
+    private Level currentLevel;
 
     public bool allCompleted = false;
     private int currentLevelIndex = 0;
@@ -22,7 +23,8 @@ public class LevelManager : MonoBehaviour
         setUpLevels();
 
         // 开始关卡
-        levels[0].Start();
+        currentLevel = levels[0];
+        currentLevel.Start();
     }
 
     public void setUpLevels()
@@ -99,9 +101,13 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void Summary()
+    public bool IsCurrentMoving()
     {
-
+        if (currentLevel != null)
+        {
+            return currentLevel.moving;
+        }
+        return false;
     }
 
     public void ReturnToMenu()

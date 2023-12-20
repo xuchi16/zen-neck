@@ -8,6 +8,7 @@ public class MsgManager : MonoBehaviour
 {
     public TextMeshProUGUI msgText; // 用于显示倒计时的UI文本
     public ZenStageManager stageManager;
+    public LevelManager levelManager;
     public TimeManager timeManager;
 
     private string msg = "";
@@ -18,13 +19,12 @@ public class MsgManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (stageManager == null || !stageManager.isMoveStage())
+        if (levelManager == null || !levelManager.IsCurrentMoving())
         {
             return;
         }

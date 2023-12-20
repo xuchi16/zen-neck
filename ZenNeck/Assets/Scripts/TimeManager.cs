@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour
 {
     public ZenStageManager stageManager;
+    public LevelManager levenManager;
 
     public TextMeshProUGUI totalTimeText;
     public TextMeshProUGUI hitTimeText;
@@ -26,10 +27,10 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (!stageManager.isMoveStage())
-        //{
-        //    return;
-        //}
+        if (!levenManager.IsCurrentMoving())
+        {
+            return;
+        }
         totalTime += Time.deltaTime;
         if (hit)
         {
