@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public abstract class Level
@@ -24,6 +25,7 @@ public abstract class Level
 
     protected int round = 2; // 来回的轮数
     protected float angularSpeed = 15.0f; // 角速度（度/秒）
+    //protected float angularSpeed = 90.0f; // 角速度（度/秒）- 测试加速
     protected float sphereRadius = 2.0f; // 球面半径
 
     public float angleLowerBound = 20;
@@ -418,14 +420,19 @@ public class SummaryLevel : Level
             percentage = timeManager.HitPercentage();
         }
 
-        Debug.Log("Percentage: " + percentage);
+        // 记录信息
+        string dateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        MainManager.Instance.AddAndSaveRecord(dateTime, percentage);
+
+
+        string msg = $"Well done! You've completed all tasks. \nReturning to the menu shortly.";
         if (percentage > 0)
         {
-            return $"Well done! You maintained focus for {percentage.ToString("F1")}% of the process. \nReturning to the menu shortly.";
-        } else
-        {
-            return $"Well done! You've completed all tasks. \nReturning to the menu shortly.";
+            msg = $"Well done! You maintained focus for {percentage.ToString("F1")}% of the process. \nReturning to the menu shortly.";
         }
+
+
+        return msg;
     }
 
 }
