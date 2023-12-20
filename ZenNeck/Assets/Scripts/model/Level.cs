@@ -8,7 +8,7 @@ public abstract class Level
     public string levelName; // 关卡名称
     public int duration; // 每一关开始前的倒计时时间
     public List<Transform> movingObjects; // 关卡中需要运动的物体
-    
+    public Transform cameraTransform; // Camera位置信息
     public string startMessage; // 开始时的消息
     public string endingMessage; // 结束时的消息
 
@@ -20,8 +20,10 @@ public abstract class Level
     public bool moving = false;
     public bool completed = false;
 
+    public bool convertToRelative = true;
+
     protected int round = 2; // 来回的轮数
-    protected float angularSpeed = 10.0f; // 角速度（度/秒）
+    protected float angularSpeed = 15.0f; // 角速度（度/秒）
     protected float sphereRadius = 2.0f; // 球面半径
 
     public float angleLowerBound = 20;
@@ -110,6 +112,15 @@ public abstract class Level
     // 抽象的 Move 方法，子类需要实现自己的移动逻辑
     public abstract void SpecificMove();
 
+    protected Vector3 ToRelativeTransform(Vector3 absolute)
+    {
+        if (!convertToRelative || absolute == null)
+        {
+            return absolute;
+        }
+        return cameraTransform.position + absolute;
+    }
+
     public override string ToString()
     {
         return $"Level: {levelName}, Start: {start}, Moving: {moving}, Completed: {completed}";
@@ -129,7 +140,7 @@ public class Level0 : Level
     {
         levelName = "Breath";
         duration = 3;
-        startMessage = "Please inhale when schrinking and exhale when expanding";
+        startMessage = "Please inhale while shrinking and exhale while expanding";
         endingMessage = "";
 
         angle = 90.0f;
@@ -230,7 +241,7 @@ public class Level1 : Level
             }
 
             // 计算目标对象在球面上的新位置
-            Vector3 targetPosition = CalculatePosition(longitude);
+            Vector3 targetPosition = ToRelativeTransform(CalculatePosition(longitude));
 
             // 设置目标对象的位置
             transform.position = targetPosition;
@@ -306,7 +317,7 @@ public class Level2 : Level
             }
 
             // 计算目标对象在球面上的新位置
-            Vector3 targetPosition = CalculatePosition(longitude);
+            Vector3 targetPosition = ToRelativeTransform(CalculatePosition(longitude));
 
             // 设置目标对象的位置
             transform.position = targetPosition;
@@ -364,11 +375,8 @@ public class Level3 : Level
                 Complete();
             }
 
-
-
-
             // 计算目标对象在 8 字形轨迹上的新位置
-            Vector3 targetPosition = Normalize(CalculateFigureEightPosition(angle));
+            Vector3 targetPosition = ToRelativeTransform(Normalize(CalculateFigureEightPosition(angle)));
 
             // 设置目标对象的位置
             transform.position = targetPosition;
