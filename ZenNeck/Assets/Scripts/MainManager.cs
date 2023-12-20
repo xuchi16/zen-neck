@@ -38,7 +38,6 @@ public class MainManager : MonoBehaviour
 
     public void AddAndSaveRecord(string dateTime, float percentage)
     {
-        Debug.Log($"JSON: 1- {JsonUtility.ToJson(dateTime)}");
         Record r = new Record();
         r.dateTime = dateTime;
         r.percentage = percentage;
@@ -57,7 +56,6 @@ public class MainManager : MonoBehaviour
             records = new Records();
             records.records = new List<Record>();
         }
-        Debug.Log($"JSON: {JsonUtility.ToJson(record)}");
         records.records.Add(record);
     }
 
