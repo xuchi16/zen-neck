@@ -13,7 +13,6 @@ public class Mover : MonoBehaviour
 
     private float angle; // 初始方位角（经度）
     public float accAngle; // 累计方位角
-    public bool level1Ends;
 
     private int round = 1; // 来回的轮数
 
@@ -27,7 +26,6 @@ public class Mover : MonoBehaviour
     {
         angle = 90.0f;
         accAngle = 0.0f;
-        level1Ends = false;
     }
 
     // Update is called once per frame
@@ -36,11 +34,6 @@ public class Mover : MonoBehaviour
         if (!stageManager.isMoveStage()) {
             return;
         }
-
-        if (!level1Ends) {
-            level1Ends = Level1(level1Ends);
-        }
-
     }
 
 

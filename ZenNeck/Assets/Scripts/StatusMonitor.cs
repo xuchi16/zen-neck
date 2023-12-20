@@ -39,7 +39,6 @@ public class StatusMonitor : MonoBehaviour
 
         // Mover data
         AddMsg(sb, mover.accAngle.ToString());
-        AddMsg(sb, mover.level1Ends.ToString());
         Separate(sb);
 
         // Level data

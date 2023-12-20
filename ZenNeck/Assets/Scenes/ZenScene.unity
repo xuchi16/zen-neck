@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageManager: {fileID: 1166384630}
-  levenManager: {fileID: 0}
+  levelManager: {fileID: 1166384631}
   totalTimeText: {fileID: 2117793257}
   hitTimeText: {fileID: 1284037167}
 --- !u!4 &437411130

@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour
     private Level currentLevel;
 
     public bool allCompleted = false;
-    private int currentLevelIndex = 0;
 
     // Start is called before the first frame update
     void Start()

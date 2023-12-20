@@ -10,7 +10,7 @@ public class RaycastController : MonoBehaviour
     public Transform cameraRig; // CameraRig的位置信息
     public float rayLength = 10.0f; // 射线的长度
     public Color rayColor = Color.blue;  // 射线的颜色
-    public Color hitColor = Color.green; // 被射中物体的颜色
+    public Color hitColor = Color.red; // 被射中物体的颜色
 
     private GameObject previousHit; // 上次命中的物体
     private Color prevColor; // 原始颜色
