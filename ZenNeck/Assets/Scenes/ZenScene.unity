@@ -489,10 +489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeManager: {fileID: 437411129}
-  stageManager: {fileID: 1166384630}
   statusBoard: {fileID: 2011756768}
   levelManager: {fileID: 1166384631}
-  mover: {fileID: 1857888187}
 --- !u!114 &437411132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1964,7 +1962,6 @@ GameObject:
   - component: {fileID: 1773164721}
   - component: {fileID: 1773164720}
   - component: {fileID: 1773164719}
-  - component: {fileID: 1773164718}
   - component: {fileID: 1773164725}
   - component: {fileID: 1773164724}
   - component: {fileID: 1773164723}
@@ -1976,22 +1973,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1773164718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773164717}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ff7f31235434efa939e751ef611dca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageManager: {fileID: 0}
-  countdownManager: {fileID: 0}
-  accAngle: 0
-  level1Ends: 0
 --- !u!135 &1773164719
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2276,7 +2257,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1857888186}
-  - component: {fileID: 1857888187}
   m_Layer: 0
   m_Name: FocalGroup
   m_TagString: Untagged
@@ -2301,22 +2281,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1857888187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857888185}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91ff7f31235434efa939e751ef611dca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageManager: {fileID: 1166384630}
-  countdownManager: {fileID: 437411132}
-  accAngle: 0
-  level1Ends: 0
 --- !u!1 &1926799950
 GameObject:
   m_ObjectHideFlags: 0
